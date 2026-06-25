@@ -2,10 +2,17 @@ package pageObjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 public class MainPaje {
     //Сколько это стоит? И как оплатить?
-    private final By howMuchItCost = By.id("accordion__heading-0");
+    private final By howMuchItCost = By.xpath("//*[@id='accordion__heading-0']");
     // Ответ при нажатии
     private final By howMuchItCostAnswer = By.id("accordion__panel-0");
 
@@ -55,10 +62,28 @@ public class MainPaje {
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 
+//Прокрутка до вопросов
+    public void enterHowMuchItCost0() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Прокрутите до блока с вопросами
+        WebElement accordionBlock = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.className("accordion"))
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", accordionBlock);
+    }
+
     public void enterHowMuchItCost () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("accordion__heading-0")));
+        wait.until(ExpectedConditions.elementToBeClickable(howMuchItCost));
         driver.findElement(howMuchItCost).click(); // Нажали на вопрос "Сколько это стоит? И как оплатить?"
     }
     public void textHowMushItCostAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(howMuchItCostAnswer));
+
+
         String actualHowMushItCostAnswer = driver.findElement(howMuchItCostAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualHowMushItCostAnswer,
@@ -70,6 +95,8 @@ public class MainPaje {
         driver.findElement(wantSeveralScooters).click(); // Нажали на вопрос "Хочу сразу несколько самокатов! Так можно?"
     }
     public void textWantSeveralScootersAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(wantSeveralScootersAnswer));
         String actualWantSeveralScootersAnswer = driver.findElement(wantSeveralScootersAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualWantSeveralScootersAnswer,
@@ -81,6 +108,8 @@ public class MainPaje {
         driver.findElement(howRentalTimeCalculated).click(); // Нажали на вопрос "Как расчитывается время аренды?"
     }
     public void texHowRentalTimeCalculatedAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(howRentalTimeCalculatedAnswer));
         String actualHowRentalTimeCalculatedAnswer = driver.findElement(howRentalTimeCalculatedAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualHowRentalTimeCalculatedAnswer,
@@ -92,6 +121,8 @@ public class MainPaje {
         driver.findElement(possibleOrderScooterToday).click(); // Нажали на вопрос "Можно ли заказать самокат прямо сегодня?"
     }
     public void textPossibleOrderScooterTodayAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(possibleOrderScooterTodayAnswer));
         String actualPossibleOrderScooterTodayAnswer = driver.findElement(possibleOrderScooterTodayAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualPossibleOrderScooterTodayAnswer,
@@ -103,6 +134,8 @@ public class MainPaje {
         driver.findElement(extendOrderOrReturnEarlier).click(); // Нажали на вопрос "Можно ли продлить заказ или вернуть самокат раньше?"
     }
     public void textExtendOrderOrReturnEarlierAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(extendOrderOrReturnEarlierAnswer));
         String actualExtendOrderOrReturnEarlierAnswer = driver.findElement(extendOrderOrReturnEarlierAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualExtendOrderOrReturnEarlierAnswer,
@@ -114,6 +147,8 @@ public class MainPaje {
         driver.findElement(bringChargerWithScooter).click(); // Нажали на вопрос "Вы привозите зарядку вместе с самокатом?"
     }
     public void textBringChargerWithScooterAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(bringChargerWithScooterAnswer));
         String actualBringChargerWithScooterAnswer = driver.findElement(bringChargerWithScooterAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualBringChargerWithScooterAnswer,
@@ -124,7 +159,16 @@ public class MainPaje {
     public void enterCanCancelOrder () {
         driver.findElement(canCancelOrder).click(); // Нажали на вопрос "Можно ли отменить заказ?"
     }
+    //Прокручиваем
+    public void scrollToElement7() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("accordion__heading-7")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
     public void textCanCancelOrderAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(canCancelOrderAnswer));
         String actualCanCancelOrderAnswer = driver.findElement(canCancelOrderAnswer).getText(); // Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualCanCancelOrderAnswer,
@@ -136,6 +180,8 @@ public class MainPaje {
         driver.findElement(liveOutsideMkadBring).click(); // Нажали на вопрос "Я живу за МКАДом, привезете?"
     }
     public void textLiveOutsideMkadBringAnswer () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(liveOutsideMkadBringAnswer));
         String actualLiveOutsideMkadBringAnswer = driver.findElement(liveOutsideMkadBringAnswer).getText();// Получили текст после нажатия на вопрос
         Assert.assertEquals("Текст элемента не совпадает с ожидаемым",
                 actualLiveOutsideMkadBringAnswer,

@@ -3,17 +3,17 @@ package pageObjects;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.model.TestClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class OrderPaje {
     // Кнопка заказа вверху
-    private final By orderButtonHead = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[@class='Button_Button__ra12g']");
+    private final By orderButtonHead = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()=\"Заказать\"]");
     // Кнопка заказать внизу
-    private final By orderButtonDown = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
+    private final By orderButtonDown = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[text()=\"Заказать\"]");
     //Поле Имя
     private final  By name = By.xpath(".//div[@class='Input_InputContainer__3NykH']/input[@placeholder='* Имя']");
     //Поле Фамилия
@@ -25,7 +25,7 @@ public class OrderPaje {
     // Поле Номер телефона
     private final By phoneNumder = By.xpath(".//div[@class='Input_InputContainer__3NykH']/input[@placeholder='* Телефон: на него позвонит курьер']");
     // Кнопка далее
-    private final By nextButton = By.className("Button_Button__ra12g Button_Middle__1CSJM");
+    private final By nextButton = By.className("Button_Middle__1CSJM");
 
 
     private WebDriver driver;
@@ -41,10 +41,18 @@ public class OrderPaje {
 
     //Нажимаем на верхнюю кнопку заказать
     public void enterOrderButtonHead () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']")));
+
         driver.findElement(orderButtonHead).click();
     }
     // Нажимаем на нижнюю кноаку заказать
     public void enterOrderButtonDown () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement button = wait.until(ExpectedConditions.presenceOfElementLocated(orderButtonDown));
+
+        // Скролл к кнопке
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
         driver.findElement(orderButtonDown).click();
     }
     // Вводм имя
@@ -74,6 +82,18 @@ public class OrderPaje {
         driver.findElement(phoneNumder).sendKeys(userPhoneNumber);
         return this;
     }
+
+    public void closeCookieBanner() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement cookieButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("rcc-confirm-button")));
+            cookieButton.click();
+            System.out.println("Куки-баннер закрыт");
+        } catch (Exception e) {
+            System.out.println("Куки-баннер не найден или уже закрыт");
+        }
+    }
+
     // Нажимаем на кнопку Далее
     public OrderPaje clickNextButton () {
         driver.findElement(nextButton).click();

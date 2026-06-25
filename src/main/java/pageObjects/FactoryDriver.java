@@ -15,7 +15,7 @@ public class FactoryDriver extends ExternalResource {
     }
 
     public void initDriver() {
-        if ("firefox").equals(System.getProperty("browser"))) {
+        if ("firefox".equals(System.getProperty("browser"))) {
             startFirefox();
         } else {
             startChrome();

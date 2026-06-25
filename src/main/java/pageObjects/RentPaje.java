@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 
 public class RentPaje {
     //Поле Когда привезти самокат
-    private final By whenBringScooter = By.className("Input_Input__1iN_Z Input_Responsible__1jDKN react-datepicker-ignore-onclickoutside");
+    private final By whenBringScooter = By.xpath(".//div[@class='react-datepicker__input-container']/input");
     //Поле Срок аренды
     private final By rentalPeriod = By.className("Dropdown-placeholder");
     // Список даты аренды
-    private final By rentalTime = By.xpath(".//*[(@role ='option' and text()='трое суток')]");
+    private final By rentalTime = By.xpath(".//div[@class='Dropdown-menu']/div[text()=\"трое суток\"]");
     //Поле цвет самоката
     private final By colourScooter = By.className("Order_Title__3EKne");
     // Цвет самоката черный жемчуг
@@ -20,7 +20,7 @@ public class RentPaje {
     // Поле комментария
     private final By comment= By.xpath(".//input[@placeholder='Комментарий для курьера']");
     //Кнопка заказать
-    private final By orderFinal= By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[@class ='Button_Button__ra12g Button_Middle__1CSJM']");
+    private final By orderFinal= By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()=\"Заказать\"]");
     // Кнопка подтверждения заказа
     private final By yesButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()=\"Да\"]");
     // Окно бронирования
