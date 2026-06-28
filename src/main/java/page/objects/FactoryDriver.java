@@ -37,6 +37,7 @@ public class FactoryDriver extends ExternalResource {
     protected void before() throws  Throwable {
         initDriver();
     }
+    // Закрываем браузер
     @Override
     protected void after() {
         driver.quit();

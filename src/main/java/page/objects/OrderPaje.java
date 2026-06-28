@@ -50,7 +50,7 @@ public class OrderPaje {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement button = wait.until(ExpectedConditions.presenceOfElementLocated(orderButtonDown));
 
-        // Скролл к кнопке
+        // Скролл к нижней кнопке Заказать
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
         driver.findElement(orderButtonDown).click();
     }

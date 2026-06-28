@@ -25,7 +25,7 @@ public class RentPaje {
     private final By yesButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()=\"Да\"]");
     // Окно бронирования
     private final By orderFinish = By.className("Order_ModalHeader__3FDaJ");
-    // Проверяем что окно появилось
+    // Проверяем что окно успешного заказа появилось
     public boolean isWindowDisplayed () {
         return driver.findElement(orderFinish).isDisplayed();
     }

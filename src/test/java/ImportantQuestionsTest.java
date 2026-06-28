@@ -24,7 +24,7 @@ public class ImportantQuestionsTest {
             this.questionIndex = questionIndex;
             this.expectedAnswer = expectedAnswer;
         }
-
+        // Массив для текста ответов на вопросы
         @Parameterized.Parameters(name = "Вопрос {0}")
         public static Collection<Object[]> data() {
             return Arrays.asList(new Object[][]{

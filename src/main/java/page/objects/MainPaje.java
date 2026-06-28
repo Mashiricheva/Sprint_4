@@ -16,7 +16,7 @@ import java.util.Collection;
 
 public class MainPaje {
 
-    // Массивы локаторов для вопросов и ответов
+    // Массив локаторов для вопросов
     private final By[] questionLocators = {
             By.id("accordion__heading-0"),
             By.id("accordion__heading-1"),
@@ -27,7 +27,7 @@ public class MainPaje {
             By.id("accordion__heading-6"),
             By.id("accordion__heading-7")
     };
-
+    // Массив локаторов для ответов
     private final By[] answerLocators = {
             By.id("accordion__panel-0"),
             By.id("accordion__panel-1"),

@@ -30,7 +30,7 @@ public class OrderTests {
         fillRentForm(rentPaje, "26.06.2026", true, "Привезите в первой половине дня");
         rentPaje.clickOrderFinal();
         rentPaje.clickOrderFinish();
-
+        // Тест должен падать в хроме
         String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         if (browserName.equals("chrome")) {
             fail("Не удалось оформить заказ! " +
@@ -58,7 +58,7 @@ public class OrderTests {
         fillRentForm(rentPaje, "30.06.2026", false, "Самокат нужен ночью");
         rentPaje.clickOrderFinal();
         rentPaje.clickOrderFinish();
-
+        // Тест должен падать в хроме
         String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         if (browserName.equals("chrome")) {
             fail("Не удалось оформить заказ! " +
@@ -85,7 +85,7 @@ public class OrderTests {
         fillRentForm(rentPaje, "26.06.2026", true, "Захватите мороженое");
         rentPaje.clickOrderFinal();
         rentPaje.clickOrderFinish();
-
+        // Тест должен падать в хроме
         String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         if (browserName.equals("chrome")) {
             fail("Не удалось оформить заказ! " +
@@ -112,7 +112,7 @@ public class OrderTests {
         fillRentForm(rentPaje, "26.06.2026", false, "Используйте спф");
         rentPaje.clickOrderFinal();
         rentPaje.clickOrderFinish();
-
+        // Тест должен падать в хроме
         String browserName = ((RemoteWebDriver) driver).getCapabilities().getBrowserName();
         if (browserName.equals("chrome")) {
             fail("Не удалось оформить заказ! " +
