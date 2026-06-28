@@ -1,8 +1,5 @@
-package pageObjects;
+package page.objects;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.model.TestClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,6 +23,8 @@ public class OrderPaje {
     private final By phoneNumder = By.xpath(".//div[@class='Input_InputContainer__3NykH']/input[@placeholder='* Телефон: на него позвонит курьер']");
     // Кнопка далее
     private final By nextButton = By.className("Button_Middle__1CSJM");
+    //Баннер куки
+    private final By cooki = By.id("rcc-confirm-button");
 
 
     private WebDriver driver;
@@ -82,11 +81,11 @@ public class OrderPaje {
         driver.findElement(phoneNumder).sendKeys(userPhoneNumber);
         return this;
     }
-
+    // Закрываем баннер куки
     public void closeCookieBanner() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement cookieButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("rcc-confirm-button")));
+            WebElement cookieButton = wait.until(ExpectedConditions.elementToBeClickable(cooki));
             cookieButton.click();
             System.out.println("Куки-баннер закрыт");
         } catch (Exception e) {

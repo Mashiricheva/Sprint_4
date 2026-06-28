@@ -1,4 +1,4 @@
-package pageObjects;
+package page.objects;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.rules.ExternalResource;
